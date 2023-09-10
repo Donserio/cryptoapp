@@ -2,7 +2,7 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // import { ReactDOM } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 
 import App from './App';
 import store from "./app/store";
@@ -20,9 +20,9 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <Router>
-      {/* <Provider store={store}> */}
+      <Provider store={store}>
         <App />
-      {/* </Provider> */}
+      </Provider>
     </Router>
   </StrictMode>
 );
