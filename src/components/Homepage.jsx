@@ -8,9 +8,14 @@ import { useGetCryptosQuery } from '../services/cryptoApi';
     const { Title } = Typography;
 
 const Homepage = () => {
-    // const { data, isFetching } = useGetCryptosQuery();
-    // console.log(data);
+  //Fetching the data 
+    const { data, isFetching } = useGetCryptosQuery();
+    console.log(data);
+    // To make use of the data variable
+    // const globalStats = data?.data?.stats;
 
+    if(isFetching) return 'Loading...';
+    
   return (
     <>
       <Title level={2} className='heading' >Global Crypto Stats</Title>
