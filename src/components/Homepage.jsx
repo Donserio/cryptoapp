@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import { Cryptocurrencies, News } from "../components";
+import { count } from "console";
 
     const { Title } = Typography;
 
 const Homepage = () => {
   //Fetching the data 
-    const { data, isFetching } = useGetCryptosQuery();
+    const { data, isFetching } = useGetCryptosQuery(10);
     // console.log(data);
     // To make use of the data variable
     const globalStats = data && data.data && data.data.stats;
@@ -31,12 +32,12 @@ const Homepage = () => {
         <Title level={2} className="home-title">Top 10 Crptocurrencies in the World</Title>
         <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show more</Link></Title>
       </div>
-      <Cryptocurrencies simplified />
+      <Cryptocurrencies simplified={true} />
       <div className="home-heading-container">
         <Title level={2} className="home-title">Latest Crypto News</Title>
         <Title level={3} className="show-more"><Link to="/news">Show more</Link></Title>
       </div>
-      <News simplified />
+      <News simplified={true} />
     </>
   ) 
 }
