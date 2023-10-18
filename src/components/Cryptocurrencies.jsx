@@ -9,13 +9,17 @@ const Cryptocurrencies = ({simplified}) => {
   const count = simplified ? 10 : 100;
   const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
+  const [searchTerm, setSearchTerm] = useState('');
   
-  console.log(cryptos);
+  if(isFetching) return "Loading...";
 
   return (
     <>
+      <div className='search-container'>
+        <Input placeholder='Search Cryptocurrency' onChange={(e) => setSearchTerm(e.target.value)} />
+      </div>
       <Row gutter={[32, 32]} className='crypto-card-container'>
-        {cryptos.map((currency) =>  
+        {cryptos?.map((currency) =>  
         <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
           <Link to={`/crypto/${currency.id} `}>
             <Card  
