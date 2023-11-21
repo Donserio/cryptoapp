@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import millify from 'millify';
 import { Link } from "react-router-dom";
 import { Card, Row, Col, Input } from 'antd';
@@ -11,6 +11,12 @@ const Cryptocurrencies = ({simplified}) => {
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
   const [searchTerm, setSearchTerm] = useState('');
   
+  useEffect(() => {
+      setCryptos(cryptosList?.data?.coins);
+
+      const filteredData = cryptos?.data?.coins.filter(() => coin.name.toLowerCase().includes(searchTerm.toLowerCase))
+  }, [cryptosList, searchTerm])
+
   if(isFetching) return "Loading...";
 
   return (
